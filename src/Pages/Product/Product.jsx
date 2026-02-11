@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import "./ProductPage.css";
+import "./Product.css";
 
 export const ProductPage = () => {
   const { id } = useParams();
