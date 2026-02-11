@@ -5,6 +5,7 @@ import "./App.css";
 import { ProductPage } from "./Pages/Product/Product";
 import { Navbar } from "./Component/Navbarr/Navbar";
 import Footer from "./Component/Footer/Footer";
+import MyCart from "./Pages/mycart/Mycart";
 
 function App() {
   const [lightMode, setLightMode] = useState(false);
@@ -24,6 +25,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Home lightMode={lightMode} setLightMode={setLightMode} />}/>
       <Route path="/product/:id" element={<ProductPage/>}/>
+      <Route path="/mycart" element={<MyCart />} />
+      <Route path="/login" element={}
     </Routes>
     <Footer/>
     </>

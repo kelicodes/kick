@@ -49,6 +49,7 @@ export const ProductPage = () => {
 
   return (
     <div className="product-page">
+      <p>{product.brand}</p>
       {/* Product Images */}
       <div className="product-image">
         <img src={mainImage} alt={product.name} className="main-image" />

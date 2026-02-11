@@ -61,6 +61,6 @@
   }
 
   .card {
-    width: 100%; /* two cards per row on mobile */
+    width: 110%; /* two cards per row on mobile */
   }
 }
