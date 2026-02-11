@@ -120,13 +120,12 @@ body.light-mode .dropdown-menu a:hover {
   background-color: #e5e5e5;
 }
 
-/* ==============================
-   MOBILE RESPONSIVE
-============================== */
+/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
   .navbar {
-    padding: 0 10px;       /* reduce horizontal padding */
-    width: 100vw;          /* ensure full viewport width */
+    padding: 0 10px;
+    width: 100vw;
+    height: 70px; /* keep height fixed so logo stays aligned */
   }
 
   .logo {
@@ -138,29 +137,33 @@ body.light-mode .dropdown-menu a:hover {
   }
 
   .left {
-    gap: 10px;             /* reduce gap between icons */
-    margin-right: 10px;    /* extra space to prevent cutting off last icon */
-    flex-wrap: wrap;        /* wrap icons if too many */
+    gap: 10px;       /* reduce gap */
+    margin-right: 10px; /* extra space to prevent cutting off last icon */
+    flex-wrap: nowrap;   /* prevent vertical stacking */
   }
 
   .dropdown-menu {
-    right: 10px;           /* align menu to viewport */
-    min-width: 140px;      /* slightly smaller on mobile */
+    right: 10px;
+    min-width: 140px;
   }
 }
 
 /* Extra small devices (<400px) */
 @media (max-width: 400px) {
   .navbar {
-    flex-direction: column;    /* wrap logo & icons vertically */
-    height: auto;
+    flex-direction: row;    /* keep logo & icons horizontal */
+    justify-content: space-between;
+    height: 60px;
     padding: 5px 10px;
-    gap: 5px;
   }
 
   .left {
-    gap: 5px;
+    gap: 8px;
     margin-right: 5px;
+  }
+
+  .logo img {
+    height: 30px;
   }
 
   .dropdown-menu {
