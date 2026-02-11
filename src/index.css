@@ -2,9 +2,10 @@
   box-sizing: border-box; /* ensures padding/margin doesn't exceed width */
 }
 
-body {
-  overflow-x: hidden; /* hides any accidental horizontal scroll */
-}
+/* body {
+  overflow-x: hidden; /* hides any accidental horizontal scroll 
+  overflow-y: hidden;
+} */
 
 /* Light Theme (Default) */
 :root {
