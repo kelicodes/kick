@@ -7,7 +7,6 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { SiNamecheap } from "react-icons/si";
 import { AuthContext } from "../../Context/Authcontext.jsx";
 
-import { logUserLogin, logUserSignup } from "../../analytics"; // ✅ GA
 import "./Login.css";
 
 // Spinner component for button loading state
