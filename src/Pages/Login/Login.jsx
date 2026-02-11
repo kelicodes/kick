@@ -36,12 +36,12 @@ const Login = () => {
 
       if (logstate === "signup") {
         response = await axios.post(
-          "https://thegoldfina.onrender.com/user/reg",
+          "https://kicks-ekpr.onrender.com/user/userReg",
           { name, email, password }
         );
       } else {
         response = await axios.post(
-          "https://thegoldfina.onrender.com/user/login",
+          "https://kicks-ekpr.onrender.com/user/login",
           { email, password }
         );
       }
@@ -81,7 +81,7 @@ const Login = () => {
       <form onSubmit={submitHandler} className="Login">
         <div className="navbar-logo">
           <h2>
-            Gold<span>Store</span>
+            Ki<span>ick</span>
           </h2>
         </div>
 

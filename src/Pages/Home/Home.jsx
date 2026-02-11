@@ -15,7 +15,7 @@ export const Home = ({ lightMode, setLightMode }) => {
       <Newarrivals />
       <Join />
       <Collection />
-      <Footer />
+   
     </div>
   );
 };

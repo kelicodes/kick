@@ -37,12 +37,46 @@ export const ProductPage = () => {
 
   const handleAddToCart = () => setShowSizePopup(true);
 
-  const confirmSize = () => {
-    if (!selectedSize) return alert("Please select a size!");
-    console.log(`Adding product ${product._id} of size ${selectedSize} to cart`);
-    setShowSizePopup(false);
-    setSelectedSize("");
-  };
+ const confirmSize = async () => {
+  if (!selectedSize) {
+    alert("Please select a size!");
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Please login first!");
+      return;
+    }
+
+    const response = await axios.post(
+      `${BASE_URL}/cart/addtocart`,
+      {
+        productId: product._id,
+        size: selectedSize,
+        quantity: 1,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.data.success) {
+      alert("Product added to cart successfully!");
+      setShowSizePopup(false);
+      setSelectedSize("");
+    }
+
+  } catch (error) {
+    console.error("Add to cart error:", error.response?.data || error.message);
+    alert(error.response?.data?.message || "Failed to add to cart");
+  }
+};
+
 
   if (loading) return <p className="loading">Loading product...</p>;
   if (!product) return <p className="loading">Product not found</p>;

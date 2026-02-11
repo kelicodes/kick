@@ -6,6 +6,7 @@ import { ProductPage } from "./Pages/Product/Product";
 import { Navbar } from "./Component/Navbarr/Navbar";
 import Footer from "./Component/Footer/Footer";
 import MyCart from "./Pages/mycart/Mycart";
+import Login from "./Pages/Login/Login";
 
 function App() {
   const [lightMode, setLightMode] = useState(false);
@@ -21,12 +22,12 @@ function App() {
 
   return (
     <>
-    <Navbar/>
+ <Navbar lightMode={lightMode} setLightMode={setLightMode} />
     <Routes>
       <Route path="/" element={<Home lightMode={lightMode} setLightMode={setLightMode} />}/>
       <Route path="/product/:id" element={<ProductPage/>}/>
       <Route path="/mycart" element={<MyCart />} />
-      <Route path="/login" element={}
+      <Route path="/login" element={<Login/>}/>
     </Routes>
     <Footer/>
     </>
