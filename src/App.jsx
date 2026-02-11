@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Home } from "./Pages/Home/Home";
+import { Route,Routes } from "react-router-dom";
 import "./App.css";
+import { ProductPage } from "./Pages/Product/Product";
 
 function App() {
   const [lightMode, setLightMode] = useState(false);
@@ -15,9 +17,10 @@ function App() {
   }, [lightMode]);
 
   return (
-    <>
-      <Home lightMode={lightMode} setLightMode={setLightMode} />
-    </>
+    <Routes>
+      <Route path="/" element={<Home lightMode={lightMode} setLightMode={setLightMode} />}/>
+      <Route path="/product/:id" element={<ProductPage/>}/>
+    </Routes>
   );
 }
 
