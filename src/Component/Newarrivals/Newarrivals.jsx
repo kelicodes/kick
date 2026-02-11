@@ -37,6 +37,7 @@ export const Newarrivals = () => {
         {products.map((product) => (
           <Card
             key={product._id}
+            id={product._id}
             name={product.name}
             price={product.price}
             image={product.images?.[0]} // optional first image

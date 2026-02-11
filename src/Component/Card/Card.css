@@ -1,3 +1,10 @@
+/* Make the link act like a block wrapper */
+.card-link {
+  display: block;          /* full width */
+  text-decoration: none;   /* remove underline */
+  color: inherit;          /* inherit text color */
+}
+
 /* Card container */
 .card {
   width: 250px; /* fixed width */
@@ -49,7 +56,11 @@
 
 /* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
+  .card-link {
+    display: block;  /* ensures it fills the column */
+  }
+
   .card {
-    width: 45%; /* two cards per row on mobile */
+    width: 100%; /* two cards per row on mobile */
   }
 }

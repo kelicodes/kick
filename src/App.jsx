@@ -3,6 +3,8 @@ import { Home } from "./Pages/Home/Home";
 import { Route,Routes } from "react-router-dom";
 import "./App.css";
 import { ProductPage } from "./Pages/Product/Product";
+import { Navbar } from "./Component/Navbarr/Navbar";
+import Footer from "./Component/Footer/Footer";
 
 function App() {
   const [lightMode, setLightMode] = useState(false);
@@ -17,10 +19,14 @@ function App() {
   }, [lightMode]);
 
   return (
+    <>
+    <Navbar/>
     <Routes>
       <Route path="/" element={<Home lightMode={lightMode} setLightMode={setLightMode} />}/>
       <Route path="/product/:id" element={<ProductPage/>}/>
     </Routes>
+    <Footer/>
+    </>
   );
 }
 

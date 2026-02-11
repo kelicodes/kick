@@ -1,3 +1,4 @@
+/* Product page styles */
 .product-page {
   display: flex;
   flex-wrap: wrap;
@@ -7,6 +8,7 @@
   gap: 40px;
 }
 
+/* Main Image */
 .product-image {
   flex: 1 1 40%;
   min-width: 300px;
@@ -37,14 +39,12 @@
   transition: border 0.2s;
 }
 
-.thumbnails .thumbnail:hover {
-  border-color: #ff3c00;
-}
-
+.thumbnails .thumbnail:hover,
 .thumbnails .thumbnail.active {
   border-color: #ff3c00;
 }
 
+/* Product details */
 .product-details {
   flex: 1 1 50%;
   min-width: 300px;
@@ -103,6 +103,83 @@
 .buy-now:hover {
   background-color: #333;
   transform: translateY(-2px);
+}
+
+/* Size popup */
+.size-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.sizes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.size-box {
+  padding: 10px 15px;
+  border: 1px solid #ff3c00;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+
+.size-box:hover {
+  background-color: #ff3c00;
+  color: #fff;
+}
+
+.size-box.selected {
+  background-color: #ff3c00;
+  color: #fff;
+}
+
+.confirm-size {
+  padding: 12px 20px;
+  margin-right: 10px;
+  background-color: #ff3c00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.confirm-size:hover {
+  background-color: #e63600;
+}
+
+.close-popup {
+  padding: 12px 20px;
+  background-color: #aaa;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.close-popup:hover {
+  background-color: #888;
 }
 
 /* MOBILE */
