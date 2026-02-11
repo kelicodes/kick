@@ -1,0 +1,12 @@
+/* default: dark mode */
+:root {
+  --bg-color: #000;      /* banner dark background */
+  --text-color: #fff;    /* banner dark text */
+  --main-color: #ff3c00; /* accent/red color */
+}
+
+/* light mode */
+body.light-mode {
+  --bg-color: #f9f9f9;   /* banner light background */
+  --text-color: #111;    /* banner light text */
+}

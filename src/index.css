@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box; /* ensures padding/margin doesn't exceed width */
+}
+
+body {
+  overflow-x: hidden; /* hides any accidental horizontal scroll */
+}
+
+/* Light Theme (Default) */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --nav-bg: #f5f5f5;
+  --card-bg: #eeeeee;
+}
+
+/* Dark Theme */
+.dark {
+  --bg-color: #111111;
+  --text-color: #ffffff;
+  --nav-bg: #1e1e1e;
+  --card-bg: #2a2a2a;
+}
+

@@ -1,0 +1,65 @@
+/* Base styles */
+.join {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.join-content {
+  max-width: 600px;
+}
+
+.join h2 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.join p {
+  font-size: 16px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.join-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25d366; /* WhatsApp green */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.join-btn:hover {
+  background-color: #1ebe57;
+  transform: translateY(-2px);
+}
+
+/* LIGHT MODE */
+.join.light {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+/* DARK MODE */
+.join.dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .join h2 {
+    font-size: 24px;
+  }
+
+  .join p {
+    font-size: 14px;
+  }
+}
