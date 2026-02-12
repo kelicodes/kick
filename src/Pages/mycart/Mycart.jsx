@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./MyCart.css";
+import "./Mycart.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const BASE_URL = "https://kicks-ekpr.onrender.com";
