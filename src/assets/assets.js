@@ -1,4 +1,4 @@
-import logo from "./kickslogo.png"
+import logo from "./redlogo.png"
 import bannerdark from "./kickbanner.png"
 import bannerlight from "./kickbanner2.png"
 

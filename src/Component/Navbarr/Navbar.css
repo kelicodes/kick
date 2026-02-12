@@ -21,13 +21,19 @@
 }
 
 /* Logo container */
+/* Logo container */
 .logo {
   display: flex;
   align-items: center;
   font-size: 22px;
   font-weight: bold;
   cursor: pointer;
+
+  /* Reset link styles */
+  color: inherit;          /* inherit navbar text color */
+  text-decoration: none;   /* remove underline */
 }
+
 
 /* Logo image */
 .logo img {

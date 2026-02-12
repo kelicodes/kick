@@ -64,7 +64,15 @@ export const Checkout = () => {
 
   if (loading) return <p>Loading cart...</p>;
   if (!cart || cart.items.length === 0)
-    return <p>Your cart is empty. Add items to checkout.</p>;
+  return (
+    <div className="checkout-container">
+      <h2>Checkout</h2>
+      <div className="checkout-empty">
+        Your cart is empty. Add items to checkout.
+      </div>
+    </div>
+  );
+
 
   return (
     <div className="checkout-container">

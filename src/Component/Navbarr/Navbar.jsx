@@ -11,10 +11,10 @@ export const Navbar = ({ lightMode, setLightMode }) => {
 
   return (
     <div className="navbar">
-      <p className="logo">
+      <Link to="/" className="logo">
         <img src={assets.logo} alt="KICKS Logo" />
         KI <span>CKS</span>
-      </p>
+      </Link>
 
       <div className="left">
         <IoMdCart size={24} />
