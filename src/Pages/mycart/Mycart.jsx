@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./MyCart.css";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const BASE_URL = "https://kicks-ekpr.onrender.com";
 
 export const MyCart = () => {
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate=useNavigate()
 
   const token = localStorage.getItem("token");
 
@@ -65,6 +67,11 @@ export const MyCart = () => {
       console.error(err.response?.data || err.message);
     }
   };
+
+
+  const checkout=()=>{
+    navigate("/checkout")
+  }
 
   if (loading) return <p className="cart-loading">Loading cart...</p>;
   if (!cart || cart.items.length === 0)
@@ -136,7 +143,7 @@ export const MyCart = () => {
 
       <div className="cart-summary">
         <h3>Total: ${total}</h3>
-        <button className="checkout-btn">Proceed to Checkout</button>
+        <button className="checkout-btn" onClick={checkout}>Proceed to Checkout</button>
       </div>
     </div>
   );

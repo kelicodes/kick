@@ -91,6 +91,7 @@ export const Collection = () => {
             filteredProducts.map((product) => (
               <Card
                 key={product._id}
+                id={product._id}
                 name={product.name}
                 price={product.price}
                 image={product.images?.[0]}

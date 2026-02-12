@@ -5,8 +5,7 @@ import axios from "axios";
 import { MdAttachEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { SiNamecheap } from "react-icons/si";
-import { AuthContext } from "../../Context/Authcontext.jsx";
-
+import { AuthContext } from "../../Context/Authcontext"
 import "./Login.css";
 
 // Spinner component for button loading state
@@ -52,11 +51,7 @@ const Login = () => {
         login(response.data.token);
 
         // ✅ Analytics tracking
-        if (logstate === "signup") {
-          logUserSignup(email);
-        } else {
-          logUserLogin(email);
-        }
+    
 
         // Clear inputs
         setName("");

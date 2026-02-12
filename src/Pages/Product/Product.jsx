@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Product.css";
 
@@ -10,6 +11,7 @@ export const ProductPage = () => {
   const [mainImage, setMainImage] = useState("");
   const [showSizePopup, setShowSizePopup] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
+  const navigate=useNavigate()
 
   const BASE_URL = "https://kicks-ekpr.onrender.com";
 
@@ -48,6 +50,7 @@ export const ProductPage = () => {
 
     if (!token) {
       alert("Please login first!");
+      navigate("/login")
       return;
     }
 
@@ -67,6 +70,7 @@ export const ProductPage = () => {
 
     if (response.data.success) {
       alert("Product added to cart successfully!");
+      navigate("/mycart")
       setShowSizePopup(false);
       setSelectedSize("");
     }
@@ -83,7 +87,7 @@ export const ProductPage = () => {
 
   return (
     <div className="product-page">
-      <p>{product.brand}</p>
+      
       {/* Product Images */}
       <div className="product-image">
         <img src={mainImage} alt={product.name} className="main-image" />
