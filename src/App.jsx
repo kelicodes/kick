@@ -9,6 +9,7 @@ import MyCart from "./Pages/mycart/Mycart";
 import Login from "./Pages/Login/Login";
 import Checkout from "./Pages/Checkout/Checkout";
 import { Collection } from "./Pages/Collection/Collection";
+import ScrollToTop from "./Component/Scroll/Scrolltotop";
 
 function App() {
   const [lightMode, setLightMode] = useState(false);
@@ -25,7 +26,9 @@ function App() {
   return (
     <>
  <Navbar lightMode={lightMode} setLightMode={setLightMode} />
+ <ScrollToTop/>
     <Routes>
+      
       <Route path="/" element={<Home lightMode={lightMode} setLightMode={setLightMode} />}/>
       <Route path="/product/:id" element={<ProductPage/>}/>
       <Route path="/mycart" element={<MyCart />} />

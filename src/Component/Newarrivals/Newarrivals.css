@@ -1,25 +1,31 @@
+/* ==========================
+   NEW ARRIVALS PAGE STYLING
+========================== */
+
 .new-arrivals {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 16px;
   background-color: var(--bg-color);
+  color: var(--text-color);
   overflow-x: hidden;
 }
 
 .new-arrivals h3 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 30px 0 20px;
   color: var(--text-color);
+  letter-spacing: -0.5px;
 }
 
-/* Products container: horizontal scroll on desktop */
+/* Products container: horizontal scroll */
 .products-container {
   display: flex;
   flex-direction: row;
-  gap: 20px;
-  overflow-x: auto;      /* horizontal scroll */
+  gap: 16px;
+  overflow-x: auto;
   padding-bottom: 10px;
   scroll-behavior: smooth;
 }
@@ -34,11 +40,10 @@
   border-radius: 4px;
 }
 
-/* Card container - desktop */
+/* Card container */
 .card {
-  flex: 0 0 50%;         /* smaller than before on desktop */
+  flex: 0 0 250px;       /* fixed width */
   min-width: 250px;
-  max-width: 400px;      /* limit max width */
   border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
@@ -54,12 +59,12 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Product image */
+/* Product image: uniform size */
 .card img {
   width: 100%;
-  height: auto;
+  height: 250px;       /* fixed height */
+  object-fit: cover;   /* crop without stretching */
   display: block;
-  object-fit: cover;
 }
 
 /* Info section at the bottom */
@@ -83,35 +88,30 @@
   color: var(--accent-color, #ff3c00);
 }
 
-/* ============================
+/* ==========================
    MOBILE RESPONSIVE
-============================ */
+========================== */
 @media (max-width: 768px) {
   .products-container {
-    display: flex;
-    flex-direction: row;    /* keep horizontal layout */
-    gap: 15px;
-    overflow-x: auto;       /* horizontal scroll */
-    padding: 0 10px;
+    gap: 12px;
+    padding: 0 8px;
   }
 
   .card {
-    flex: 0 0 66%;          /* first card occupies 2/3 of screen */
-    min-width: 66%;         /* ensure proper sizing */
-    margin: 0;
+    flex: 0 0 180px;      /* smaller width on mobile */
+    min-width: 180px;
   }
 
   .card img {
-    width: 100%;
-    height: auto;           /* keep large on mobile */
-    object-fit: cover;
+    height: 180px;        /* match card width */
   }
 
   .card-info {
-    padding: 10px;
+    padding: 8px;
   }
 
-  .card-name, .card-price {
-    font-size: 16px;
+  .card-name,
+  .card-price {
+    font-size: 14px;
   }
 }
