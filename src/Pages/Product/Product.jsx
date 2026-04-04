@@ -119,7 +119,7 @@ export const ProductPage = () => {
         <div className="pp-details">
 
           <p className="pp-breadcrumb">
-            <Link to="/">Home</Link> &rsaquo; <Link to="/products">Shop</Link> &rsaquo; <span>{product.name}</span>
+            <Link to="/">Home</Link> &rsaquo; <Link to="/collection">Shop</Link> &rsaquo; <span>{product.name}</span>
           </p>
 
           <div className="pp-badges">

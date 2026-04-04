@@ -24,7 +24,7 @@
 .sbc-title {
   font-size: 32px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-color);
   margin: 0;
   line-height: 1.1;
 }
