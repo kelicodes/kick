@@ -1,13 +1,28 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "dark"
+  );
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  useEffect(() => {
+    const body = document.body;
+
+    if (theme === "light") {
+      body.classList.add("light-mode");
+      body.classList.remove("dark-mode");
+    } else {
+      body.classList.add("dark-mode");
+      body.classList.remove("light-mode");
+    }
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () =>
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -16,5 +31,4 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-// Custom hook
 export const useTheme = () => useContext(ThemeContext);
