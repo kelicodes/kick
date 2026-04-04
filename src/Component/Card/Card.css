@@ -1,12 +1,13 @@
 /* Make the link act like a block wrapper */
 .card-link {
-  display: block;          /* full width */
-  text-decoration: none;   /* remove underline */
+  display: none;          /* full width */
+  text-decoration: none !important;   /* remove underline */
   color: inherit;          /* inherit text color */
 }
 
 /* Card container */
 .card {
+  display:none;
   width: 250px; /* fixed width */
   border: 1px solid #ddd; /* optional border */
   border-radius: 10px; /* rounded corners */
@@ -24,6 +25,8 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+
+
 /* Product image flush against top, left, right */
 .card img {
   width: 100%;
@@ -36,6 +39,7 @@
 .card-info {
   padding: 10px; /* padding inside info box */
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: var(--card-info-bg, #fff); /* optional background */
@@ -44,13 +48,13 @@
 /* Name and price */
 .card-name {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 10px;
   color: var(--text-color, #000);
 }
 
 .card-price {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 10px;
   color: var(--accent-color, #ff3c00);
 }
 
@@ -61,10 +65,12 @@
   }
 
   .card {
-    width: 110%; /* two cards per row on mobile */
+    width: 100%; /* two cards per row on mobile */
   }
 
   .card img{
     height: 180px;
-  } 
+  }
+  
+ 
 }

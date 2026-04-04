@@ -121,7 +121,7 @@
 
 .popup-content {
   background-color: #fff;
-  padding: 30px;
+  padding: 3px;
   border-radius: 10px;
   text-align: center;
   max-width: 400px;
@@ -131,9 +131,10 @@
 .sizes-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap:4px;
   justify-content: center;
-  margin: 20px 0;
+  margin: 5px 0;
+ border: 0px solid red;
 }
 
 .size-box {
@@ -196,5 +197,9 @@
 
   .thumbnails {
     justify-content: flex-start;
+  }
+
+  .sizes-grid{
+    bottom: 0px;
   }
 }
