@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
-import Card from "../Card/Card";
+import Card from "../../Component/Card/Card"
 import "./Collection.css";
 
 const BASE_URL = "https://kicks-ekpr.onrender.com";
