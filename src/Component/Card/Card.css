@@ -27,7 +27,7 @@
 /* Product image flush against top, left, right */
 .card img {
   width: 100%;
-  height: auto;
+  height: 200px;
   display: block;
   object-fit: cover; /* covers full width */
 }
@@ -63,4 +63,8 @@
   .card {
     width: 110%; /* two cards per row on mobile */
   }
+
+  .card img{
+    height: 180px;
+  } 
 }
