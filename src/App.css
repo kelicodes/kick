@@ -10,3 +10,15 @@ body.light-mode {
   --bg-color: #f9f9f9;   /* banner light background */
   --text-color: #111;    /* banner light text */
 }
+
+
+/* Hide vertical scrollbar but still allow scrolling */
+body {
+  overflow-y: scroll;        /* keep scrolling possible */
+  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+}
+
+body::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Edge */
+}

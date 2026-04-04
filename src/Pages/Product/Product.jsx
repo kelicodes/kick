@@ -1,160 +1,236 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./Product.css";
 
+const BASE_URL = "https://kicks-ekpr.onrender.com";
+
 export const ProductPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [mainImage, setMainImage] = useState("");
-  const [showSizePopup, setShowSizePopup] = useState(false);
+  const navigate = useNavigate();
+
+  const [product, setProduct]         = useState(null);
+  const [loading, setLoading]         = useState(false);
+  const [mainImage, setMainImage]     = useState("");
   const [selectedSize, setSelectedSize] = useState("");
-  const navigate=useNavigate()
-
-  const BASE_URL = "https://kicks-ekpr.onrender.com";
-
-  // Fetch single product
-  const fetchProduct = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(`${BASE_URL}/product/product/${id}`);
-      if (res.data.success) {
-        setProduct(res.data.theproduct);
-        setMainImage(res.data.theproduct.images?.[0] || "");
-      }
-    } catch (err) {
-      console.error("Error fetching product:", err.response?.data || err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [showPopup, setShowPopup]     = useState(false);
+  const [adding, setAdding]           = useState(false);
+  const [wished, setWished]           = useState(false);
 
   useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get(`${BASE_URL}/product/product/${id}`);
+        if (res.data.success) {
+          setProduct(res.data.theproduct);
+          setMainImage(res.data.theproduct.images?.[0] || "");
+        }
+      } catch (err) {
+        console.error("Error fetching product:", err.response?.data || err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchProduct();
   }, [id]);
 
-  const allSizes = product?.sizes.map((s) => s.size.split(",")).flat() || [];
+  const allSizes = product?.sizes?.map((s) => s.size.split(",")).flat() || [];
 
-  const handleAddToCart = () => setShowSizePopup(true);
-
- const confirmSize = async () => {
-  if (!selectedSize) {
-    alert("Please select a size!");
-    return;
-  }
-
-  try {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      alert("Please login first!");
-      navigate("/login")
+  const confirmSize = async () => {
+    if (!selectedSize) {
+      alert("Please select a size!");
       return;
     }
-
-    const response = await axios.post(
-      `${BASE_URL}/cart/addtocart`,
-      {
-        productId: product._id,
-        size: selectedSize,
-        quantity: 1,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    try {
+      setAdding(true);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Please login first!");
+        navigate("/login");
+        return;
       }
-    );
-
-    if (response.data.success) {
-      alert("Product added to cart successfully!");
-      navigate("/mycart")
-      setShowSizePopup(false);
-      setSelectedSize("");
+      const response = await axios.post(
+        `${BASE_URL}/cart/addtocart`,
+        { productId: product._id, size: selectedSize, quantity: 1 },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (response.data.success) {
+        setShowPopup(false);
+        setSelectedSize("");
+        navigate("/mycart");
+      }
+    } catch (error) {
+      alert(error.response?.data?.message || "Failed to add to cart");
+    } finally {
+      setAdding(false);
     }
+  };
 
-  } catch (error) {
-    console.error("Add to cart error:", error.response?.data || error.message);
-    alert(error.response?.data?.message || "Failed to add to cart");
+  if (loading) {
+    return (
+      <div className="pp-loading">
+        <div className="pp-skeleton pp-skeleton--img" />
+        <div className="pp-skeleton-details">
+          <div className="pp-skeleton pp-skeleton--line" style={{ width: "40%" }} />
+          <div className="pp-skeleton pp-skeleton--line pp-skeleton--title" />
+          <div className="pp-skeleton pp-skeleton--line" style={{ width: "25%" }} />
+          <div className="pp-skeleton pp-skeleton--line" style={{ width: "80%" }} />
+          <div className="pp-skeleton pp-skeleton--line" style={{ width: "65%" }} />
+        </div>
+      </div>
+    );
   }
-};
 
-
-  if (loading) return <p className="loading">Loading product...</p>;
-  if (!product) return <p className="loading">Product not found</p>;
+  if (!product) {
+    return (
+      <div className="pp-empty">
+        <p>Product not found.</p>
+        <Link to="/products" className="pp-back-link">Back to shop</Link>
+      </div>
+    );
+  }
 
   return (
-    <div className="product-page">
-      
-      {/* Product Images */}
-      <div className="product-image">
-        <img src={mainImage} alt={product.name} className="main-image" />
-        <div className="thumbnails">
-          {product.images?.map((img, idx) => (
-            <img
-              key={idx}
-              src={img}
-              alt={`${product.name} ${idx}`}
-              className={`thumbnail ${mainImage === img ? "active" : ""}`}
-              onClick={() => setMainImage(img)}
-            />
-          ))}
+    <>
+      <div className="pp">
+
+        {/* ── Images ── */}
+        <div className="pp-images">
+          <div className="pp-main-img">
+            <img src={mainImage} alt={product.name} />
+          </div>
+          {product.images?.length > 1 && (
+            <div className="pp-thumbs">
+              {product.images.map((img, i) => (
+                <button
+                  key={i}
+                  className={`pp-thumb ${mainImage === img ? "active" : ""}`}
+                  onClick={() => setMainImage(img)}
+                >
+                  <img src={img} alt={`${product.name} view ${i + 1}`} />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-      </div>
 
-      {/* Product Details */}
-      <div className="product-details">
-        <h2 className="product-name">{product.name}</h2>
-        <p className="product-price">KSH{product.price}</p>
-        <p className="product-description">{product.desc}</p>
+        {/* ── Details ── */}
+        <div className="pp-details">
 
-        {/* Available Sizes on Product Info */}
-        <div className="available-sizes">
-          <h4>Available Sizes:</h4>
-          <div className="sizes-grid">
-            {allSizes.map((size) => (
-              <div key={size} className="size-box">{size}</div>
+          <p className="pp-breadcrumb">
+            <Link to="/">Home</Link> &rsaquo; <Link to="/products">Shop</Link> &rsaquo; <span>{product.name}</span>
+          </p>
+
+          <div className="pp-badges">
+            <span className="pp-badge pp-badge--new">New arrival</span>
+            <span className="pp-badge pp-badge--stock">In stock</span>
+          </div>
+
+          <h1 className="pp-name">{product.name}</h1>
+
+          <div className="pp-price-row">
+            <span className="pp-price">Ksh {product.price.toLocaleString()}</span>
+          </div>
+
+          <div className="pp-divider" />
+
+          <p className="pp-desc">{product.desc}</p>
+
+          {/* Sizes */}
+          {allSizes.length > 0 && (
+            <div className="pp-size-section">
+              <p className="pp-section-label">
+                Select size
+                {selectedSize && <span className="pp-selected-size"> — {selectedSize}</span>}
+              </p>
+              <div className="pp-sizes">
+                {allSizes.map((size) => (
+                  <button
+                    key={size}
+                    className={`pp-size ${selectedSize === size ? "active" : ""}`}
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Actions */}
+          <div className="pp-actions">
+            <button
+              className="pp-btn-cart"
+              onClick={() => setShowPopup(true)}
+            >
+              Add to cart
+            </button>
+            <button className="pp-btn-buy" onClick={confirmSize}>
+              Buy now
+            </button>
+            <button
+              className={`pp-btn-wish ${wished ? "wished" : ""}`}
+              onClick={() => setWished((w) => !w)}
+              aria-label="Wishlist"
+            >
+              {wished ? "♥" : "♡"}
+            </button>
+          </div>
+
+          {/* Meta grid */}
+          <div className="pp-meta">
+            {[
+              { label: "Category", value: product.category || "Sneakers" },
+              { label: "Brand",    value: product.brand || product.name },
+              { label: "Delivery", value: "2–4 business days" },
+              { label: "Returns",  value: "7-day free returns" },
+            ].map(({ label, value }) => (
+              <div key={label} className="pp-meta-item">
+                <span className="pp-meta-label">{label}</span>
+                <span className="pp-meta-value">{value}</span>
+              </div>
             ))}
           </div>
-        </div>
 
-        {/* Action Buttons */}
-        <div className="product-actions">
-          <button className="add-to-cart" onClick={handleAddToCart}>
-            Add to Cart
-          </button>
-          <button className="buy-now">Buy Now</button>
         </div>
       </div>
 
-      {/* Size Selection Popup */}
-      {showSizePopup && (
-        <div className="size-popup">
-          <div className="popup-content">
-            <h3>Select the size you want</h3>
-            <div className="sizes-grid">
+      {/* ── Size Popup ── */}
+      {showPopup && (
+        <div className="pp-overlay" onClick={() => setShowPopup(false)}>
+          <div className="pp-popup" onClick={(e) => e.stopPropagation()}>
+            <div className="pp-popup-header">
+              <div>
+                <h3 className="pp-popup-title">Choose your size</h3>
+                <p className="pp-popup-sub">Select a size to add to cart</p>
+              </div>
+              <button className="pp-popup-close" onClick={() => setShowPopup(false)}>✕</button>
+            </div>
+
+            <div className="pp-sizes">
               {allSizes.map((size) => (
-                <div
+                <button
                   key={size}
-                  className={`size-box ${selectedSize === size ? "selected" : ""}`}
+                  className={`pp-size ${selectedSize === size ? "active" : ""}`}
                   onClick={() => setSelectedSize(size)}
                 >
                   {size}
-                </div>
+                </button>
               ))}
             </div>
-            <div className="popup-buttons">
-              <button className="confirm-size" onClick={confirmSize}>
-                Add to Cart
+
+            <div className="pp-popup-actions">
+              <button
+                className="pp-btn-cart"
+                onClick={confirmSize}
+                disabled={adding}
+              >
+                {adding ? "Adding..." : "Add to cart"}
               </button>
               <button
-                className="close-popup"
-                onClick={() => {
-                  setShowSizePopup(false);
-                  setSelectedSize("");
-                }}
+                className="pp-popup-cancel"
+                onClick={() => { setShowPopup(false); setSelectedSize(""); }}
               >
                 Cancel
               </button>
@@ -162,6 +238,6 @@ export const ProductPage = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };

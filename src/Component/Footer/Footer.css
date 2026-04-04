@@ -11,32 +11,11 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-/* Light Theme (Default) */
-:root {
-  --bg-color: #ffffff;
-  --text-color: #111111;
-  --nav-bg: #f5f5f5;
-  --card-bg: #eeeeee;
-  --footer-bg: #111111;
-  --footer-text: #fff;
-  --accent-color: #ff3c00;
-}
-
-/* Dark Theme */
-.dark {
-  --bg-color: #111111;
-  --text-color: #ffffff;
-  --nav-bg: #1e1e1e;
-  --card-bg: #2a2a2a;
-  --footer-bg: #222222;
-  --footer-text: #fff;
-}
-
 /* ===================== FOOTER ===================== */
 .footer {
   width: 100%;
-  background-color: var(--footer-bg);
-  color: var(--footer-text);
+  background-color: var(--bg-color);   /* from theme */
+  color: var(--text-color);            /* from theme */
   padding: 40px 20px 20px 20px;
   box-sizing: border-box;
 }
@@ -57,6 +36,7 @@ body {
 .footer-logo p {
   font-size: 14px;
   line-height: 1.6;
+  color: var(--text-color);
 }
 
 .footer-links h4,
@@ -65,18 +45,19 @@ body {
   font-size: 16px;
   margin-bottom: 10px;
   font-weight: bold;
+  color: var(--text-color);
 }
 
 .footer-links a {
   display: block;
-  color: var(--footer-text);
+  color: var(--text-color);
   text-decoration: none;
   margin-bottom: 8px;
   transition: color 0.3s;
 }
 
 .footer-links a:hover {
-  color: var(--accent-color);
+  color: var(--main-color);   /* accent color from theme */
 }
 
 .footer-social .social-icons {
@@ -85,18 +66,19 @@ body {
 }
 
 .footer-social .social-icons a {
-  color: var(--footer-text);
+  color: var(--main-color);
   font-size: 18px;
   transition: color 0.3s;
 }
 
 .footer-social .social-icons a:hover {
-  color: var(--accent-color);
+  color: var(--text-color);
 }
 
 .footer-newsletter p {
   font-size: 14px;
   margin-bottom: 10px;
+  color: var(--text-color);
 }
 
 .footer-newsletter form {
@@ -116,8 +98,8 @@ body {
 
 .footer-newsletter button {
   padding: 10px 15px;
-  background-color: var(--accent-color);
-  color: #fff;
+  background-color: var(--main-color); /* accent color */
+  color: var(--text-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -126,7 +108,7 @@ body {
 }
 
 .footer-newsletter button:hover {
-  background-color: #e63600;
+  background-color: #e63600; /* slightly darker accent */
 }
 
 .footer-bottom {
@@ -134,6 +116,7 @@ body {
   padding-top: 15px;
   text-align: center;
   font-size: 14px;
+  color: var(--text-color);
 }
 
 /* ===================== MOBILE RESPONSIVE ===================== */
