@@ -41,7 +41,7 @@ const HeroSlider = () => {
         <p className="slide-price">Ksh {p.price.toLocaleString()}</p>
         <div className="slide-btns">
           <Link to={`/product/${p._id}`} className="btn-primary">Shop now</Link>
-          <Link to="/products" className="btn-ghost">View all</Link>
+          <Link to="/collection" className="btn-ghost">View all</Link>
         </div>
       </div>
 

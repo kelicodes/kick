@@ -8,6 +8,7 @@ import Footer from "./Component/Footer/Footer";
 import MyCart from "./Pages/mycart/Mycart";
 import Login from "./Pages/Login/Login";
 import Checkout from "./Pages/Checkout/Checkout";
+import { Collection } from "./Pages/Collection/Collection";
 
 function App() {
   const [lightMode, setLightMode] = useState(false);
@@ -30,6 +31,7 @@ function App() {
       <Route path="/mycart" element={<MyCart />} />
       <Route path="/login" element={<Login/>}/>
       <Route path="/checkout" element={<Checkout/>}/>
+      <Route path="/collection" element={<Collection/>}/>
     </Routes>
     <Footer/>
     </>
