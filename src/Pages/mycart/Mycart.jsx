@@ -185,7 +185,7 @@ export const MyCart = () => {
 
           <div className="summary-row">
             <span>Subtotal ({itemCount} items)</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>KSH{subtotal.toFixed(2)}</span>
           </div>
           <div className="summary-row shipping">
             <span>Shipping</span>
@@ -196,7 +196,7 @@ export const MyCart = () => {
 
           <div className="summary-total-row">
             <span className="summary-total-label">Total</span>
-            <span className="summary-total-amount">${subtotal.toFixed(2)}</span>
+            <span className="summary-total-amount">KSH{subtotal.toFixed(2)}</span>
           </div>
 
           <button className="checkout-btn" onClick={() => navigate("/checkout")}>

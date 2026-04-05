@@ -159,7 +159,7 @@ export const Checkout = () => {
                       <span className="checkout-badge">Qty {item.quantity}</span>
                     </div>
                     <p className="checkout-item-price">
-                      ${(item.productId.price * item.quantity).toFixed(2)}
+                      KSH{(item.productId.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
                 </div>
@@ -199,7 +199,7 @@ export const Checkout = () => {
 
           <div className="summary-line">
             <span>Subtotal ({itemCount} items)</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>KSH{subtotal.toFixed(2)}</span>
           </div>
           <div className="summary-line free">
             <span>Shipping</span>
@@ -214,7 +214,7 @@ export const Checkout = () => {
 
           <div className="summary-total">
             <span className="summary-total-label">Total</span>
-            <span className="summary-total-amount">${subtotal.toFixed(2)}</span>
+            <span className="summary-total-amount">KSH{subtotal.toFixed(2)}</span>
           </div>
 
           <button
@@ -237,7 +237,7 @@ export const Checkout = () => {
             <p className="confirm-body">
               You're about to place a cash-on-delivery order for:
             </p>
-            <p className="confirm-amount">${subtotal.toFixed(2)}</p>
+            <p className="confirm-amount">KSH{subtotal.toFixed(2)}</p>
             <div className="confirm-actions">
               <button
                 className="confirm-yes"
