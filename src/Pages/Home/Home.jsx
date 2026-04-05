@@ -7,6 +7,7 @@ import { Collection } from "../../Component/Collection/Collection";
 import Footer from "../../Component/Footer/Footer";
 import HeroSlider from "../../Component/Heroslider/Heroslider";
 import ShopByCategory from "../../Component/ShopBy/ShopBy";
+import { HowItWorks } from "../../Component/del/Del";
 
 export const Home = ({ lightMode, setLightMode }) => {
   return (
@@ -18,7 +19,7 @@ export const Home = ({ lightMode, setLightMode }) => {
       <Newarrivals />
       <Join />
       <Collection />
-   
+      <HowItWorks/>
     </div>
   );
 };
