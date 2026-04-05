@@ -145,10 +145,10 @@ export const MyCart = () => {
 
                   <div className="cart-meta">
                     <span className="cart-size-badge">Size {item.size}</span>
-                    <span className="cart-unit-price">${item.productId.price} each</span>
+                    <span className="cart-unit-price">ksh{item.productId.price} each</span>
                   </div>
 
-                  <p className="cart-line-total">${lineTotal.toFixed(2)}</p>
+                  <p className="cart-line-total">ksh{lineTotal.toFixed(2)}</p>
 
                   <div className="qty-controls">
                     <button
