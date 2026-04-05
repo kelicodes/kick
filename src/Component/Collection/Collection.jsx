@@ -1,21 +1,33 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "../Card/Card";
-import { FiSearch } from "react-icons/fi"; // search icon
 import "./Collection.css";
 
+/* ── Skeleton ─────────────────────────────────────────────────── */
+const SkeletonGrid = ({ count = 10 }) => (
+  <div className="collection-skeleton">
+    {Array.from({ length: count }).map((_, i) => (
+      <div className="skel-card" key={i}>
+        <div className="skel-img" />
+        <div className="skel-body">
+          <div className="skel-line" />
+          <div className="skel-line short" />
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+/* ── Component ─────────────────────────────────────────────────── */
 export const Collection = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts]               = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("");
-  const [brand, setBrand] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [showFilters, setShowFilters] = useState(false); // controls visibility of filters
+  const [sort, setSort]                       = useState("");
+  const [brand, setBrand]                     = useState("");
+  const [loading, setLoading]                 = useState(false);
 
- const BASE_URL = "https://kicks-ekpr.onrender.com";
+  const BASE_URL = "https://kicks-ekpr.onrender.com";
 
-  // Fetch products
   const fetchProducts = async () => {
     try {
       setLoading(true);
@@ -28,63 +40,80 @@ export const Collection = () => {
     }
   };
 
-  useEffect(() => {
-    fetchProducts();
-
-  }, []);
+  useEffect(() => { fetchProducts(); }, []);
 
   useEffect(() => {
     let temp = [...products];
-
     if (brand) temp = temp.filter((p) => p.brand === brand);
-
-    if (search)
-      temp = temp.filter((p) =>
-        p.name.toLowerCase().includes(search.toLowerCase())
-      );
-
-    if (sort === "low") temp.sort((a, b) => a.price - b.price);
+    if (sort === "low")  temp.sort((a, b) => a.price - b.price);
     else if (sort === "high") temp.sort((a, b) => b.price - a.price);
-
     setFilteredProducts(temp);
-  }, [search, sort, brand, products]);
+  }, [sort, brand, products]);
+
+  const clearFilters = () => { setSort(""); setBrand(""); };
+  const hasActiveFilters = sort || brand;
+
+  /* unique brands from fetched data */
+  const brands = [...new Set(products.map((p) => p.brand).filter(Boolean))];
 
   return (
     <div className="collection">
-      <h2>Shop Collection</h2>
 
-      {/* Search Icon */}
-      <div className="search-icon" onClick={() => setShowFilters(!showFilters)}>
-        <FiSearch size={24} />
+      {/* ── Header ──────────────────────────────────────────── */}
+      <div className="collection-header">
+        <div className="collection-header-left">
+          <p className="collection-label">Everything, curated</p>
+          <h2 className="collection-title">
+            SHOP <span className="ghost">COLLECTION</span>
+          </h2>
+          {!loading && (
+            <p className="product-count">
+              {filteredProducts.length} of {products.length} styles
+            </p>
+          )}
+        </div>
+
+        {/* ── Filters ─────────────────────────────────────── */}
+        <div className="filter-bar">
+          {/* brand pills — generated from real data */}
+          {brands.map((b) => (
+            <button
+              key={b}
+              className={`filter-pill${brand === b ? " active" : ""}`}
+              onClick={() => setBrand(brand === b ? "" : b)}
+            >
+              {b}
+            </button>
+          ))}
+
+          {/* sort select */}
+          <div className="filter-select-wrap">
+            <select
+              className={`filter-select${sort ? " has-value" : ""}`}
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+            >
+              <option value="">Sort: Featured</option>
+              <option value="low">Price: Low → High</option>
+              <option value="high">Price: High → Low</option>
+            </select>
+          </div>
+
+          {/* clear when active */}
+          {hasActiveFilters && (
+            <button className="filter-pill" onClick={clearFilters}>
+              ✕ Clear
+            </button>
+          )}
+        </div>
       </div>
 
-      {/* Filters (toggle visibility) */}
-      {showFilters && (
-        <div className="filters">
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+      {/* ── Animated divider ────────────────────────────────── */}
+      <div className="collection-divider" />
 
-          <select value={sort} onChange={(e) => setSort(e.target.value)}>
-            <option value="">Sort by Price</option>
-            <option value="low">Low to High</option>
-            <option value="high">High to Low</option>
-          </select>
-
-          <select value={brand} onChange={(e) => setBrand(e.target.value)}>
-            <option value="">Select Brand</option>
-            <option value="Nike">Nike</option>
-            <option value="Adidas">Adidas</option>
-            <option value="Puma">Puma</option>
-          </select>
-        </div>
-      )}
-
+      {/* ── Grid ─────────────────────────────────────────────── */}
       {loading ? (
-        <p>Loading...</p>
+        <SkeletonGrid count={10} />
       ) : (
         <div className="collection-products">
           {filteredProducts.length > 0 ? (
@@ -98,7 +127,13 @@ export const Collection = () => {
               />
             ))
           ) : (
-            <p>No products found.</p>
+            <div className="empty-state">
+              <span className="empty-state-number">0</span>
+              <p className="empty-state-text">No products match your filters</p>
+              <button className="empty-clear-btn" onClick={clearFilters}>
+                Clear filters
+              </button>
+            </div>
           )}
         </div>
       )}
