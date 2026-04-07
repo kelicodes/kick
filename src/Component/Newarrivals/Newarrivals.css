@@ -121,37 +121,41 @@
 /* ─── Loading skeleton ──────────────────────────────────────────── */
 .loading-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(0.75rem, 2vw, 1.25rem);
 }
 
 .skeleton-card {
   background: var(--surface-color);
-  border-radius: 2px;
+  border-radius: 14px;
   overflow: hidden;
   position: relative;
 }
 
 .skeleton-img {
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 1 / 1;
   background: var(--surface-color);
 }
 
 .skeleton-info {
-  padding: 0.75rem;
+  padding: 12px 14px;
   display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 .skeleton-line {
   height: 12px;
-  border-radius: 2px;
-  background: var(--card-bg);
+  border-radius: 6px;
+  background: var(--border-color);
+  animation: col-pulse 1.5s ease-in-out infinite;
+  flex: 1;
 }
 
-.skeleton-line.short { width: 55%; }
+.skeleton-line.short {
+  flex: 0 0 30%;
+}
 
 .skeleton-card::after {
   content: '';
@@ -167,16 +171,21 @@
   100% { background-position: 200% 0; }
 }
 
+@keyframes col-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
 /* ─── Products grid ─────────────────────────────────────────────── */
 .products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(0.75rem, 2vw, 1.25rem);
   position: relative;
   z-index: 1;
 }
 
-/* ─── Card overrides (targets Card component root) ──────────────── */
+/* ─── Card overrides ────────────────────────────────────────────── */
 .products-container > * {
   display: flex;
   flex-direction: column;
@@ -185,7 +194,7 @@
 /* Force uniform image inside every Card */
 .products-container :is(img, .card-image, [class*="image"], [class*="img"]) {
   width: 100% !important;
-  aspect-ratio: 3 / 4 !important;
+  aspect-ratio: 1 / 1 !important;
   object-fit: cover !important;
   object-position: center !important;
   display: block;
@@ -238,6 +247,8 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   cursor: grab;
+  -webkit-mask-image: linear-gradient(90deg, black 80%, transparent 100%);
+  mask-image: linear-gradient(90deg, black 80%, transparent 100%);
 }
 
 .trending-scroll-wrapper::-webkit-scrollbar { display: none; }
@@ -266,12 +277,6 @@
   display: block;
 }
 
-/* scroll hint fade */
-.trending-scroll-wrapper {
-  -webkit-mask-image: linear-gradient(90deg, black 80%, transparent 100%);
-  mask-image: linear-gradient(90deg, black 80%, transparent 100%);
-}
-
 /* ─── Stagger animation on grid items ──────────────────────────── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -292,11 +297,23 @@
 .products-container > *:nth-child(7)  { animation-delay: 0.35s; }
 .products-container > *:nth-child(8)  { animation-delay: 0.40s; }
 
-/* ─── Responsive tweaks ─────────────────────────────────────────── */
-@media (max-width: 480px) {
-  .products-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+/* ─── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .products-container,
+  .loading-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .new-arrivals {
+    padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem);
+  }
+
+  .products-container,
+  .loading-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
   .trending-cards > * {
@@ -304,14 +321,10 @@
   }
 }
 
-@media (min-width: 900px) {
-  .products-container {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 1280px) {
-  .products-container {
-    grid-template-columns: repeat(5, 1fr);
+@media (max-width: 480px) {
+  .products-container,
+  .loading-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }
