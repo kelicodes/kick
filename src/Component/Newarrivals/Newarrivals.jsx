@@ -1,6 +1,7 @@
 import "./Newarrivals.css";
 import Card from "../Card/Card";
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 /* ── Skeleton placeholder while loading ───────────────────────── */
@@ -47,6 +48,7 @@ export const Newarrivals = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const dragScroll = useDragScroll();
+  const navigate=useNavigate()
 
   const BASE_URL = "https://kicks-ekpr.onrender.com";
 
@@ -80,7 +82,7 @@ export const Newarrivals = () => {
           </h2>
         </div>
         <div className="header-right">
-          <button className="view-all-btn">View all →</button>
+          <button onClick={()=>navigate("/collection")} className="view-all-btn">View all →</button>
         </div>
       </div>
 
@@ -112,7 +114,7 @@ export const Newarrivals = () => {
                 </h2>
               </div>
               <div className="header-right">
-                <button className="view-all-btn">Browse all →</button>
+                <button onClick={()=>navigate("/collection")} className="view-all-btn">Browse all →</button>
               </div>
             </div>
 

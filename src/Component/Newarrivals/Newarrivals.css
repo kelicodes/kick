@@ -127,7 +127,7 @@
 
 .skeleton-card {
   background: var(--surface-color);
-  border-radius: 14px;
+  border-radius: 2px;
   overflow: hidden;
   position: relative;
 }
@@ -139,22 +139,21 @@
 }
 
 .skeleton-info {
-  padding: 12px 14px;
+  padding: 0.75rem;
   display: flex;
-  justify-content: space-between;
-  gap: 8px;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
 .skeleton-line {
   height: 12px;
-  border-radius: 6px;
+  border-radius: 2px;
   background: var(--border-color);
   animation: col-pulse 1.5s ease-in-out infinite;
-  flex: 1;
 }
 
 .skeleton-line.short {
-  flex: 0 0 30%;
+  width: 55%;
 }
 
 .skeleton-card::after {
@@ -176,7 +175,7 @@
   50%       { opacity: 0.4; }
 }
 
-/* ─── Products grid ─────────────────────────────────────────────── */
+/* ─── NEW ARRIVALS — vertical grid, same card size as Trending Now ── */
 .products-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -185,21 +184,41 @@
   z-index: 1;
 }
 
-/* ─── Card overrides ────────────────────────────────────────────── */
 .products-container > * {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-/* Force uniform image inside every Card */
+/* Same square image style as .trending-cards */
 .products-container :is(img, .card-image, [class*="image"], [class*="img"]) {
   width: 100% !important;
   aspect-ratio: 1 / 1 !important;
   object-fit: cover !important;
-  object-position: center !important;
+  object-position: center top !important;
   display: block;
   flex-shrink: 0;
 }
+
+/* ─── Stagger animation on grid items ──────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.products-container > *,
+.trending-cards > * {
+  animation: fadeUp 0.5s both;
+}
+
+.products-container > *:nth-child(1) { animation-delay: 0.05s; }
+.products-container > *:nth-child(2) { animation-delay: 0.10s; }
+.products-container > *:nth-child(3) { animation-delay: 0.15s; }
+.products-container > *:nth-child(4) { animation-delay: 0.20s; }
+.products-container > *:nth-child(5) { animation-delay: 0.25s; }
+.products-container > *:nth-child(6) { animation-delay: 0.30s; }
+.products-container > *:nth-child(7) { animation-delay: 0.35s; }
+.products-container > *:nth-child(8) { animation-delay: 0.40s; }
 
 /* ─── Trending section ──────────────────────────────────────────── */
 .trending-section {
@@ -263,7 +282,7 @@
 
 /* Fixed-width trending cards */
 .trending-cards > * {
-  width: clamp(180px, 30vw, 250px);
+  width: clamp(180px, 22vw, 250px);
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -276,26 +295,6 @@
   object-position: center top !important;
   display: block;
 }
-
-/* ─── Stagger animation on grid items ──────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.products-container > *,
-.trending-cards > * {
-  animation: fadeUp 0.5s both;
-}
-
-.products-container > *:nth-child(1)  { animation-delay: 0.05s; }
-.products-container > *:nth-child(2)  { animation-delay: 0.10s; }
-.products-container > *:nth-child(3)  { animation-delay: 0.15s; }
-.products-container > *:nth-child(4)  { animation-delay: 0.20s; }
-.products-container > *:nth-child(5)  { animation-delay: 0.25s; }
-.products-container > *:nth-child(6)  { animation-delay: 0.30s; }
-.products-container > *:nth-child(7)  { animation-delay: 0.35s; }
-.products-container > *:nth-child(8)  { animation-delay: 0.40s; }
 
 /* ─── Responsive ────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
