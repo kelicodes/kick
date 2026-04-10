@@ -22,7 +22,7 @@ function App() {
       document.body.classList.remove("light-mode");
     }
   }, [lightMode]);
-
+console.log(lightMode)
   return (
     <>
  <Navbar lightMode={lightMode} setLightMode={setLightMode} />
