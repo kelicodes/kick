@@ -12,7 +12,7 @@ import { Collection } from "./Pages/Collection/Collection";
 import ScrollToTop from "./Component/Scroll/Scrolltotop";
 
 function App() {
-  const [lightMode, setLightMode] = useState(false);
+  const [lightMode, setLightMode] = useState(true);
 
   useEffect(() => {
     // toggle body class for global dark/light mode styles
