@@ -3,7 +3,7 @@ import axios from "axios";
 import "./Checkout.css";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "https://kicks-ekpr.onrender.com";
+const BASE_URL = "https://kicks-juxo.onrender.com";
 
 /* ── Skeleton ─────────────────────────────────────────────────── */
 const CheckoutSkeleton = () => (

@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./Product.css";
 
-const BASE_URL = "https://kicks-ekpr.onrender.com";
+const BASE_URL = "https://kicks-juxo.onrender.com";
 
 export const ProductPage = () => {
   const { id } = useParams();

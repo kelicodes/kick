@@ -3,7 +3,7 @@ import axios from "axios";
 import Card from "../../Component/Card/Card"
 import "./Collection.css";
 
-const BASE_URL = "https://kicks-ekpr.onrender.com";
+const BASE_URL = "https://kicks-juxo.onrender.com";
 
 const BRANDS = ["Nike", "Adidas", "Puma", "New Balance", "Reebok"];
 

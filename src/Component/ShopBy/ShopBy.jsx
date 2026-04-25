@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./ShopBy.css";
 
-const BASE_URL = "https://kicks-ekpr.onrender.com";
+const BASE_URL = "https://kicks-juxo.onrender.com";
 
 const CATEGORY_META = {
   sneakers:  { label: "Sneakers",   color: "#ff3c00", bg: "#1a0800" },

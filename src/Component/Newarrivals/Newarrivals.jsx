@@ -50,7 +50,7 @@ export const Newarrivals = () => {
   const dragScroll = useDragScroll();
   const navigate=useNavigate()
 
-  const BASE_URL = "https://kicks-ekpr.onrender.com";
+  const BASE_URL = "https://kicks-juxo.onrender.com";
 
   const fetchProducts = async () => {
     try {

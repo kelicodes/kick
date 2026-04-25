@@ -34,12 +34,12 @@ const Login = () => {
 
       if (logstate === "signup") {
         response = await axios.post(
-          "https://kicks-ekpr.onrender.com/user/userReg",
+          "https://kicks-juxo.onrender.com/user/userReg",
           { name, email, password }
         );
       } else {
         response = await axios.post(
-          "https://kicks-ekpr.onrender.com/user/login",
+          "https://kicks-juxo.onrender.com/user/login",
           { email, password }
         );
       }

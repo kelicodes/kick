@@ -26,7 +26,7 @@ export const Collection = () => {
   const [brand, setBrand]                     = useState("");
   const [loading, setLoading]                 = useState(false);
 
-  const BASE_URL = "https://kicks-ekpr.onrender.com";
+  const BASE_URL = "https://kicks-juxo.onrender.com";
 
   const fetchProducts = async () => {
     try {
